@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 
 const App = () => {
-  const [currentSection, setCurrentSection] = createSignal("home");
+  const [, setCurrentSection] = createSignal("home");
 
   const scrollToSection = (section: string) => {
     setCurrentSection(section);
