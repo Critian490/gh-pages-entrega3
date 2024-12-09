@@ -3,9 +3,12 @@ import { createSignal } from "solid-js";
 const App = () => {
   const [currentSection, setCurrentSection] = createSignal("home");
 
-  const scrollToSection = (section) => {
+  const scrollToSection = (section: string) => {
     setCurrentSection(section);
-    document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
