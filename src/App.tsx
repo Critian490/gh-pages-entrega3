@@ -1,31 +1,197 @@
-import { createSignal } from 'solid-js';
-import './App.css';
-import solidLogo from './assets/solid.svg';
-import viteLogo from '/vite.svg';
+import { createSignal } from "solid-js";
 
-function App() {
-  const [count, setCount] = createSignal(0);
+const App = () => {
+  const [currentSection, setCurrentSection] = createSignal("home");
+
+  const scrollToSection = (section) => {
+    setCurrentSection(section);
+    document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} class='logo' alt='Vite logo' />
-        </a>
-        <a href='https://solidjs.com' target='_blank'>
-          <img src={solidLogo} class='logo solid' alt='Solid logo' />
-        </a>
-      </div>
-      <h1>Prueba deploy</h1>
-      <div class='card'>
-        <button onClick={() => setCount((count) => count + 1)}>count is {count()}</button>
+    <div style={{ fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
+      {/* Navbar */}
+      <nav
+        style={{
+          position: "fixed",
+          top: "0",
+          width: "100%",
+          backgroundColor: "#0078D7",
+          padding: "1rem",
+          zIndex: "1000",
+          color: "#fff",
+          textAlign: "center",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <button
+          onClick={() => scrollToSection("home")}
+          style={{
+            margin: "0 1rem",
+            padding: "0.5rem 1rem",
+            background: "transparent",
+            border: "none",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Inicio
+        </button>
+        <button
+          onClick={() => scrollToSection("about")}
+          style={{
+            margin: "0 1rem",
+            padding: "0.5rem 1rem",
+            background: "transparent",
+            border: "none",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Sobre Nosotros
+        </button>
+        <button
+          onClick={() => scrollToSection("contact")}
+          style={{
+            margin: "0 1rem",
+            padding: "0.5rem 1rem",
+            background: "transparent",
+            border: "none",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Contacto
+        </button>
+      </nav>
+
+      {/* Sections */}
+      <section
+        id="home"
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <h1>Bienvenido a Nuestra Página 🚀</h1>
+          <p>Explora nuestras secciones para conocernos mejor.</p>
+          <button
+            onClick={() => scrollToSection("about")}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#0078D7",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "5px",
+              marginTop: "1rem",
+            }}
+          >
+            Saber Más
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        style={{
+          height: "100vh",
+          padding: "2rem",
+          backgroundColor: "#e1e8ed",
+          textAlign: "center",
+        }}
+      >
+        <h2>Sobre Nosotros</h2>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          aliquam, nisi nec facilisis pharetra, lacus justo commodo arcu, at
+          vehicula orci eros nec metus.
         </p>
-      </div>
-      <p class='read-the-docs'>Click on the Vite and Solid logos to learn more</p>
-    </>
+        <p>
+          Integer tristique mi id metus placerat, sit amet feugiat nulla
+          volutpat. Vestibulum a enim sem. Pellentesque habitant morbi tristique
+          senectus et netus et malesuada fames ac turpis egestas.
+        </p>
+      </section>
+
+      <section
+        id="contact"
+        style={{
+          height: "100vh",
+          padding: "2rem",
+          backgroundColor: "#d1e7dd",
+          textAlign: "center",
+        }}
+      >
+        <h2>Contacto</h2>
+        <p>¿Tienes alguna pregunta? ¡Escríbenos!</p>
+        <form
+          style={{
+            maxWidth: "500px",
+            margin: "0 auto",
+            backgroundColor: "white",
+            padding: "1rem",
+            borderRadius: "5px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <div style={{ marginBottom: "1rem" }}>
+            <input
+              type="text"
+              placeholder="Tu nombre"
+              style={{
+                width: "100%",
+                padding: "0.5rem",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+              }}
+            />
+          </div>
+          <div style={{ marginBottom: "1rem" }}>
+            <input
+              type="email"
+              placeholder="Tu correo electrónico"
+              style={{
+                width: "100%",
+                padding: "0.5rem",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+              }}
+            />
+          </div>
+          <div style={{ marginBottom: "1rem" }}>
+            <textarea
+              placeholder="Tu mensaje"
+              rows="4"
+              style={{
+                width: "100%",
+                padding: "0.5rem",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+              }}
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#0078D7",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "5px",
+            }}
+          >
+            Enviar
+          </button>
+        </form>
+      </section>
+    </div>
   );
-}
+};
 
 export default App;
